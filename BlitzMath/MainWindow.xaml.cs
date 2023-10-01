@@ -54,7 +54,8 @@ namespace BlitzMath
             currentDifficulty = Difficulty.EASY;
             game = new Game(currentDifficulty);
             Calculation.Content = game.GetCalculation();
-            
+
+            Input.Background = Brushes.Transparent;
             Input.Focus();
         }
 
@@ -69,6 +70,7 @@ namespace BlitzMath
             game = new Game(currentDifficulty);
             Calculation.Content = game.GetCalculation();
 
+            Input.Background = Brushes.Transparent;
             Input.Focus();
         }
 
@@ -83,6 +85,7 @@ namespace BlitzMath
             game = new Game(currentDifficulty);
             Calculation.Content = game.GetCalculation();
 
+            Input.Background = Brushes.Transparent;
             Input.Focus();
         }
 
@@ -103,7 +106,7 @@ namespace BlitzMath
             else
             {
                 Input.Background = Brushes.Red;
-                NextButton.Focus();
+                Input.Text = string.Empty;
                 statsIncorrect++;
                 StatsIncorrect.Content = statsIncorrect.ToString();
             }
@@ -114,7 +117,7 @@ namespace BlitzMath
             game = new Game(currentDifficulty);
             Calculation.Content = game.GetCalculation();
 
-            Input.Text = "";
+            Input.Text = string.Empty;
             Input.Focus();
             Input.Background = Brushes.Transparent;
         }
