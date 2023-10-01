@@ -5,8 +5,111 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlitzMath"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="550">
+        Background="DimGray"
+        Title="BlitzMath" Height="250" Width="400" ResizeMode="CanMinimize">
+    <!--Window Resources-->
+    <Window.Resources>
+        <!--DifficultyButton-->
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontFamily" Value="/Fonts/#Cascadia Code"/>
+            <Setter Property="Background" Value="#525252"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#5b5b5b"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseCaptured" Value="True">
+                                <Setter Property="Background" Value="#525252"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--TextBox-->
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="5 10 10 10"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+            <Setter Property="BorderBrush" Value="#373737"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontFamily" Value="/Fonts/#Cascadia Code"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <!--Grid Definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         
+        <!--Difficulty-->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Easy"
+                    Click="Button_Click_Easy"/>
+            <Button Content="Normal"
+                    Click="Button_Click_Normal"/>
+            <Button Content="Hard"
+                    Click="Button_Click_Hard"/>
+        </StackPanel>
+        
+        <!--Game-->
+        <Grid Grid.Row="1" Margin="0 25 0 0">
+            <!--Grid Definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <Label x:Name="calculation"
+                   Grid.Row="0" Grid.Column="0"
+                   Margin="10 10 5 10"
+                   HorizontalAlignment="Right"
+                   Content="12×5÷2 ="
+                   Foreground="White"
+                   FontSize="30"
+                   FontFamily="/Fonts/#Cascadia Code"/>
+            <TextBox x:Name="input" Text="30"
+                     Grid.Row="0" Grid.Column="1"/>
+            <Button Grid.Row="1" Grid.ColumnSpan="2"
+                    Content="Next"
+                    Width="200"/>
+        </Grid>
     </Grid>
 </Window>
