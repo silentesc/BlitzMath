@@ -44,28 +44,6 @@ namespace BlitzMath
             StatsIncorrect.Content = statsIncorrect.ToString();
         }
 
-        private void CheckInput()
-        {
-            if (!int.TryParse(Input.Text, out int inputNum)) return;
-
-            // Game has been won
-            if (game.CheckInput(inputNum))
-            {
-                Input.Background = Brushes.Green;
-                NextButton.Focus();
-                statsCorrect++;
-                StatsCorrect.Content = statsCorrect.ToString();
-            }
-            // Game has been lost
-            else
-            {
-                Input.Background = Brushes.Red;
-                NextButton.Focus();
-                statsIncorrect++;
-                StatsIncorrect.Content = statsIncorrect.ToString();
-            }
-        }
-
         private void Button_Click_Easy(object sender, RoutedEventArgs e)
         {
             ResetDifficultyButtons();
@@ -111,7 +89,24 @@ namespace BlitzMath
         private void Input_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Return) return;
-            CheckInput();
+            if (!int.TryParse(Input.Text, out int inputNum)) return;
+
+            // Game has been won
+            if (game.CheckInput(inputNum))
+            {
+                Input.Background = Brushes.Green;
+                NextButton.Focus();
+                statsCorrect++;
+                StatsCorrect.Content = statsCorrect.ToString();
+            }
+            // Game has been lost
+            else
+            {
+                Input.Background = Brushes.Red;
+                NextButton.Focus();
+                statsIncorrect++;
+                StatsIncorrect.Content = statsIncorrect.ToString();
+            }
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
