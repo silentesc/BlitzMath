@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BlitzMath"
         mc:Ignorable="d"
         Background="DimGray"
-        Title="BlitzMath" Height="250" Width="400" ResizeMode="CanMinimize">
+        Title="BlitzMath" Height="300" Width="400" ResizeMode="CanMinimize">
     <!--Window Resources-->
     <Window.Resources>
         <!--DifficultyButton-->
@@ -96,6 +96,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             
             <Label x:Name="Calculation"
@@ -110,8 +111,31 @@
                      KeyDown="Input_KeyDown"/>
             <Button Grid.Row="1" Grid.ColumnSpan="2"
                     x:Name="NextButton" Content="Next"
-                    Width="200"
+                    Margin="10"
+                    Width="150"
                     Click="NextButton_Click"/>
+            <StackPanel Grid.Row="2">
+                <Label Content="Correct Answers:"
+                       Foreground="White"
+                       FontSize="16"
+                       FontFamily="/Fonts/#Cascadia Code"/>
+                <Label Content="Incorrect Answers:"
+                       Foreground="White"
+                       FontSize="16"
+                       FontFamily="/Fonts/#Cascadia Code"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="1">
+                <Label x:Name="StatsCorrect"
+                       Content="0"
+                       Foreground="White"
+                       FontSize="16"
+                       FontFamily="/Fonts/#Cascadia Code"/>
+                <Label x:Name="StatsIncorrect"
+                       Content="0"
+                       Foreground="White"
+                       FontSize="16"
+                       FontFamily="/Fonts/#Cascadia Code"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

@@ -8,6 +8,8 @@ namespace BlitzMath
     {
         Difficulty currentDifficulty;
         Game game;
+        int statsCorrect = 0;
+        int statsIncorrect = 0;
 
         public MainWindow()
         {
@@ -19,6 +21,8 @@ namespace BlitzMath
             currentDifficulty = Difficulty.NORMAL;
             game = new Game(currentDifficulty);
             Calculation.Content = game.GetCalculation();
+
+            Input.Focus();
         }
 
         private void ResetDifficultyButtons()
@@ -32,42 +36,16 @@ namespace BlitzMath
             HardButton.BorderThickness = new Thickness(0);
         }
 
-        private void Button_Click_Easy(object sender, RoutedEventArgs e)
+        private void ResetStats()
         {
-            ResetDifficultyButtons();
-            EasyButton.IsEnabled = false;
-            EasyButton.BorderThickness = new Thickness(1);
-
-            currentDifficulty = Difficulty.EASY;
-            game = new Game(currentDifficulty);
-            Calculation.Content = game.GetCalculation();
+            statsCorrect = 0;
+            statsIncorrect = 0;
+            StatsCorrect.Content = statsCorrect.ToString();
+            StatsIncorrect.Content = statsIncorrect.ToString();
         }
 
-        private void Button_Click_Normal(object sender, RoutedEventArgs e)
+        private void CheckInput()
         {
-            ResetDifficultyButtons();
-            NormalButton.IsEnabled = false;
-            NormalButton.BorderThickness = new Thickness(1);
-
-            currentDifficulty = Difficulty.NORMAL;
-            game = new Game(currentDifficulty);
-            Calculation.Content = game.GetCalculation();
-        }
-
-        private void Button_Click_Hard(object sender, RoutedEventArgs e)
-        {
-            ResetDifficultyButtons();
-            HardButton.IsEnabled = false;
-            HardButton.BorderThickness = new Thickness(1);
-
-            currentDifficulty = Difficulty.HARD;
-            game = new Game(currentDifficulty);
-            Calculation.Content = game.GetCalculation();
-        }
-
-        private void Input_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key != Key.Return) return;
             if (!int.TryParse(Input.Text, out int inputNum)) return;
 
             // Game has been won
@@ -75,13 +53,65 @@ namespace BlitzMath
             {
                 Input.Background = Brushes.Green;
                 NextButton.Focus();
+                statsCorrect++;
+                StatsCorrect.Content = statsCorrect.ToString();
             }
             // Game has been lost
             else
             {
                 Input.Background = Brushes.Red;
                 NextButton.Focus();
+                statsIncorrect++;
+                StatsIncorrect.Content = statsIncorrect.ToString();
             }
+        }
+
+        private void Button_Click_Easy(object sender, RoutedEventArgs e)
+        {
+            ResetDifficultyButtons();
+            ResetStats();
+            EasyButton.IsEnabled = false;
+            EasyButton.BorderThickness = new Thickness(1);
+
+            currentDifficulty = Difficulty.EASY;
+            game = new Game(currentDifficulty);
+            Calculation.Content = game.GetCalculation();
+            
+            Input.Focus();
+        }
+
+        private void Button_Click_Normal(object sender, RoutedEventArgs e)
+        {
+            ResetDifficultyButtons();
+            ResetStats();
+            NormalButton.IsEnabled = false;
+            NormalButton.BorderThickness = new Thickness(1);
+
+            currentDifficulty = Difficulty.NORMAL;
+            game = new Game(currentDifficulty);
+            Calculation.Content = game.GetCalculation();
+
+            Input.Focus();
+        }
+
+        private void Button_Click_Hard(object sender, RoutedEventArgs e)
+        {
+            ResetDifficultyButtons();
+            ResetStats();
+            HardButton.IsEnabled = false;
+            HardButton.BorderThickness = new Thickness(1);
+
+            currentDifficulty = Difficulty.HARD;
+            game = new Game(currentDifficulty);
+            Calculation.Content = game.GetCalculation();
+
+            Input.Focus();
+        }
+
+        private void Input_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Return) return;
+            CheckInput();
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
