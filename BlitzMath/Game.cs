@@ -13,6 +13,7 @@ namespace BlitzMath
         {
             switch (difficulty)
             {
+                case Difficulty.BASIC: GenerateBasicCalculation(); break;
                 case Difficulty.EASY: GenerateEasyCalculation(); break;
                 case Difficulty.NORMAL: GenerateNormalCalculation(); break;
                 case Difficulty.HARD: GenerateHardCalculation(); break;
@@ -28,6 +29,37 @@ namespace BlitzMath
         public bool CheckInput(int input)
         {
             return input == result;
+        }
+
+        /*
+         * Basic calculation
+         * Examples:
+         * 5 + 7
+         * 8 - 9
+         * 5 * 3
+         */
+        private void GenerateBasicCalculation()
+        {
+            // random.Next(1, 10) generates number between 1 - 9
+            Random random = new Random();
+            int firstNumber;
+            int secondNumber;
+            int symbol;
+
+            symbol = random.Next(0, 3);
+            firstNumber = random.Next(1, 10);
+            secondNumber = random.Next(1, 10);
+
+            // Generate calculation string
+            calculation = string.Format("{0}{1}{2}", firstNumber, symbols[symbol], secondNumber);
+
+            // Calculate result
+            switch (symbol)
+            {
+                case 0: result = firstNumber + secondNumber; break;
+                case 1: result = firstNumber - secondNumber; break;
+                case 2: result = firstNumber * secondNumber; break;
+            }
         }
 
         /*

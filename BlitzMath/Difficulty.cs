@@ -2,6 +2,6 @@
 {
     enum Difficulty
     {
-        EASY, NORMAL, HARD
+        BASIC, EASY, NORMAL, HARD
     }
 }
