@@ -11,7 +11,7 @@
     <Window.Resources>
         <!--DifficultyButton-->
         <Style TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Width" Value="85"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="FontSize" Value="17"/>
             <Setter Property="FontFamily" Value="/Fonts/#Cascadia Code"/>
@@ -78,6 +78,8 @@
         
         <!--Difficulty-->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="BasicButton" Content="Basic"
+                    Click="Button_Click_Basic"/>
             <Button x:Name="EasyButton" Content="Easy"
                     Click="Button_Click_Easy"/>
             <Button x:Name="NormalButton" Content="Normal"

@@ -27,10 +27,12 @@ namespace BlitzMath
 
         private void ResetDifficultyButtons()
         {
+            BasicButton.IsEnabled = true;
             EasyButton.IsEnabled = true;
             NormalButton.IsEnabled = true;
             HardButton.IsEnabled = true;
 
+            BasicButton.BorderThickness = new Thickness(0);
             EasyButton.BorderThickness = new Thickness(0);
             NormalButton.BorderThickness = new Thickness(0);
             HardButton.BorderThickness = new Thickness(0);
@@ -42,6 +44,21 @@ namespace BlitzMath
             statsIncorrect = 0;
             StatsCorrect.Content = statsCorrect.ToString();
             StatsIncorrect.Content = statsIncorrect.ToString();
+        }
+
+        private void Button_Click_Basic(object sender, RoutedEventArgs e)
+        {
+            ResetDifficultyButtons();
+            ResetStats();
+            BasicButton.IsEnabled = false;
+            BasicButton.BorderThickness = new Thickness(1);
+
+            currentDifficulty = Difficulty.BASIC;
+            game = new Game(currentDifficulty);
+            Calculation.Content = game.GetCalculation();
+
+            Input.Background = Brushes.Transparent;
+            Input.Focus();
         }
 
         private void Button_Click_Easy(object sender, RoutedEventArgs e)
