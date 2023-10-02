@@ -161,7 +161,7 @@ namespace BlitzMath
             secondSymbol = random.Next(0, 2);
             firstNumber = random.Next(1, 100);
             secondNumber = random.Next(1, 20);
-            thirdNumber = random.Next(1, 100);
+            thirdNumber = random.Next(1, 1000);
 
             // Generate calculation string
             calculation = string.Format("{0}{1}{2}{3}{4}", firstNumber, symbols[firstSymbol], secondNumber, symbols[secondSymbol], thirdNumber);
