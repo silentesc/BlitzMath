@@ -36,6 +36,8 @@ namespace BlitzMath
             EasyButton.BorderThickness = new Thickness(0);
             NormalButton.BorderThickness = new Thickness(0);
             HardButton.BorderThickness = new Thickness(0);
+
+            Input.Text = string.Empty;
         }
 
         private void ResetStats()
